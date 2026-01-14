@@ -81,20 +81,32 @@ jobs:
           script: |
            
             echo "Connected successfully"
-            # Log in to GHCR on VM
-            echo ${{ secrets.GHCR_PAT }} | docker login ghcr.io -u hiruniMalshika --password-stdin
+            # Login to GHCR
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u hiruniMalshika --password-stdin
+
+            # Define images
+            IMAGE_BACKEND=ghcr.io/hirunimalshika/studentappbackend:latest
+            IMAGE_FRONTEND=ghcr.io/hirunimalshika/studentappfrontend:latest
 
             # Pull latest images
-            docker pull $IMAGE_BACKEND:latest
-            docker pull $IMAGE_FRONTEND:latest
+            docker pull $IMAGE_BACKEND
+            docker pull $IMAGE_FRONTEND
 
-            # Stop & remove old containers
+            # Stop & remove old containers (ignore if not exist)
             docker stop backend || true
             docker rm backend || true
             docker stop frontend || true
             docker rm frontend || true
 
-            # Run new containers
-            docker run -d --name backend --restart unless-stopped -p 5000:5000 $IMAGE_BACKEND:latest
-            docker run -d --name frontend --restart unless-stopped -p 5173:5173 $IMAGE_FRONTEND:latest
+            # Run containers
+            docker run -d \
+              --name backend \
+              --restart unless-stopped \
+              -p 5000:5000 \
+              $IMAGE_BACKEND
 
+            docker run -d \
+              --name frontend \
+              --restart unless-stopped \
+              -p 5173:5173 \
+              $IMAGE_FRONTEND
