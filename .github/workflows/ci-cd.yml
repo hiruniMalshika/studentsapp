@@ -108,5 +108,5 @@ jobs:
             docker run -d \
               --name frontend \
               --restart unless-stopped \
-              -p 5173:5173 \
+              -p 5173:80 \
               $IMAGE_FRONTEND
