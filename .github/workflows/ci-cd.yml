@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      IMAGE_BACKEND: ghcr.io/hiruniMalshika/studentappbackend
-      IMAGE_FRONTEND: ghcr.io/hiruniMalshika/studentappfrontend
+      IMAGE_BACKEND: ghcr.io/hirunimalshika/studentappbackend
+      IMAGE_FRONTEND: ghcr.io/hirunimalshika/studentappfrontend
 
     steps:
       - name: Checkout code
