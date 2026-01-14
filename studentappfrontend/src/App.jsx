@@ -37,7 +37,7 @@ function App() {
       return;
     }
     try {
-      const res = await fetch('http://localhost:5000/students', {
+      const res = await fetch('http://62.84.179.198:5000/students', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
