@@ -79,6 +79,8 @@ jobs:
           username: ${{ env.VM_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+           
+            echo "Connected successfully"
             # Log in to GHCR on VM
             echo ${{ secrets.GHCR_PAT }} | docker login ghcr.io -u hiruniMalshika --password-stdin
 
